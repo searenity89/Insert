@@ -1,12 +1,13 @@
-﻿@model Insert.Models.MidRateTableModel
+﻿@model Insert.Models.RateTableModel
 
 @{
-    ViewBag.Title = "Table A";
+    ViewBag.Title = "TableC";
 }
 
-<h2>Table A</h2>
+<h2>TableC</h2>
 
 <div>
+    <h4>RateTableModel</h4>
     <hr />
     <dl class="dl-horizontal">
         <dt>
@@ -26,6 +27,14 @@
         </dd>
 
         <dt>
+            @Html.DisplayNameFor(model => model.TradingDate)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.TradingDate)
+        </dd>
+
+        <dt>
             @Html.DisplayNameFor(model => model.EffectiveDate)
         </dt>
 
@@ -42,7 +51,8 @@
                 <tr>
                     <th>Currency</th>
                     <th>Code</th>
-                    <th>Value</th>
+                    <th>Bid</th>
+                    <th>Ask</th>
                 </tr>
                 @foreach (var rate in Model.Rates)
                 {
@@ -54,11 +64,15 @@
                             @rate.Code
                         </td>
                         <td>
-                            @rate.Value
+                            @rate.Bid
+                        </td>
+                        <td>
+                            @rate.Ask
                         </td>
                     </tr>
                 }
             </table>
         </dd>
+
     </dl>
 </div>

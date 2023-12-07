@@ -1,16 +1,16 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.Linq;
+using System.Security.Principal;
 using System.Web;
+using System.Xml.Linq;
 
-namespace Insert.Models
+namespace Insert.Entities
 {
-    public class MidRateTableModel
+    public class BaseTableEntity : BaseEntity
     {
-        public string TableName { get; set; }
-        public string No { get; set; }
         public DateTime EffectiveDate { get; set; }
-        public List<MidRateModel> Rates { get; set; }
         public TableType TableType { get; set; }
     }
 }

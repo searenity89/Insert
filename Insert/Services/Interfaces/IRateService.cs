@@ -9,8 +9,8 @@ using Insert.Models;
 
 namespace Insert.Services.Interfaces
 {
-    public interface IMidRateService
+    public interface IRateService
     {
-        Task<MidRateTableModel> GetMidRates(TableType tableType);
+        Task<RateTableModel> GetRates(TableType tableType);
     }
 }

@@ -15,18 +15,18 @@ using Newtonsoft.Json;
 
 namespace Insert.Services.Implementations
 {
-    public class MidRateService : IMidRateService
+    public class RateService : IRateService
     {
-        public IRateRepository<MidRateTable> _midRateRepository;
+        public IRateRepository<RateTable> _rateRepository;
         public IMapper _mapper;
 
-        public MidRateService(IRateRepository<MidRateTable> midRateRepository, IMapper mapper)
+        public RateService(IRateRepository<RateTable> rateRepository, IMapper mapper)
         {
-            _midRateRepository = midRateRepository;
+            _rateRepository = rateRepository;
             _mapper = mapper;
         }
 
-        public async Task<MidRateTableModel> GetMidRates(Models.TableType tableType)
+        public async Task<RateTableModel> GetRates(Models.TableType tableType)
         {
             try
             {
@@ -43,13 +43,13 @@ namespace Insert.Services.Implementations
                     jsonResult = reader.ReadToEnd();
                 }
 
-                var midRatesDto = JsonConvert.DeserializeObject<List<MidRateTableDto>>(jsonResult);
-                var midRates = _mapper.Map<MidRateTableModel>(midRatesDto.FirstOrDefault());
-                midRates.TableType = tableType;
+                var ratesDto = JsonConvert.DeserializeObject<List<RateTableDto>>(jsonResult);
+                var rates = _mapper.Map<RateTableModel>(ratesDto.FirstOrDefault());
+                rates.TableType = tableType;
 
-                await _midRateRepository.AddRates(_mapper.Map<MidRateTable>(midRates));
+                await _rateRepository.AddRates(_mapper.Map<RateTable>(rates));
 
-                return midRates;
+                return rates;
             }
             catch (Exception ex)
             {

@@ -9,14 +9,14 @@ using Insert.Models;
 
 namespace Insert.Profiles
 {
-    public class MidRateTableProfile : Profile
+    public class RateTableProfile : Profile
     {
-        public MidRateTableProfile()
+        public RateTableProfile()
         {
-            CreateMap<MidRateTableDto, MidRateTableModel>()
+            CreateMap<RateTableDto, RateTableModel>()
                 .ForMember(dst => dst.TableName, opt => opt.MapFrom(src => src.Table));
 
-            CreateMap<MidRateTableModel, MidRateTable>();
+            CreateMap<RateTableModel, RateTable>();
         }
     }
 }

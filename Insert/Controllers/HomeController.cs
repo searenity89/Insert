@@ -3,8 +3,10 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Net;
+using System.Threading.Tasks;
 using System.Web;
 using System.Web.Mvc;
+using Insert.Db;
 using Insert.Services.Interfaces;
 using Newtonsoft.Json;
 
@@ -13,29 +15,30 @@ namespace Insert.Controllers
     public class HomeController : Controller
     {
         public IMidRateService _midRateService;
+        public IRateService _rateService;
 
-        public HomeController(IMidRateService midRateService)
+        public HomeController(IMidRateService midRateService, IRateService rateService)
         {
             _midRateService = midRateService;
+            _rateService = rateService;
         }
 
-        public ActionResult TableA()
+        public async Task<ActionResult> TableA()
         {
-            var midRates = _midRateService.GetMidRates(Models.TableType.A);
+            var midRates = await _midRateService.GetMidRates(Models.TableType.A);
             return View("MidRateTable", midRates);
         }
 
-        public ActionResult TableB()
+        public async Task<ActionResult> TableB()
         {
-            var midRates = _midRateService.GetMidRates(Models.TableType.B);
+            var midRates = await _midRateService.GetMidRates(Models.TableType.B);
             return View("MidRateTable", midRates);
         }
 
-        public ActionResult Contact()
+        public async Task<ActionResult> TableC()
         {
-            ViewBag.Message = "Your contact page.";
-
-            return View();
+            var rates = await _rateService.GetRates(Models.TableType.C);
+            return View("RateTable", rates);
         }
     }
 }

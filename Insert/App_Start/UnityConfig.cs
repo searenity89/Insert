@@ -1,6 +1,8 @@
 using System;
 using AutoMapper;
 using Insert.Profiles;
+using Insert.Repositories.Implementations;
+using Insert.Repositories.Interfaces;
 using Insert.Services.Implementations;
 using Insert.Services.Interfaces;
 using Unity;
@@ -45,12 +47,17 @@ namespace Insert
 
             // TODO: Register your type's mappings here.
             // container.RegisterType<IProductRepository, ProductRepository>();
+            container.RegisterType(typeof(IRateRepository<>), typeof(RateRepository<>));
+
             container.RegisterType<IMidRateService, MidRateService>();
+            container.RegisterType<IRateService, RateService>();
 
             var configuration = new MapperConfiguration(cfg =>
             {
                 cfg.AddProfile<MidRateTableProfile>();
                 cfg.AddProfile<MidRateProfile>();
+                cfg.AddProfile<RateTableProfile>();
+                cfg.AddProfile<RateProfile>();
             });
 
             var mapper = configuration.CreateMapper();
