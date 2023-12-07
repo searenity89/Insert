@@ -1,23 +1,34 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
+using System.Net;
 using System.Web;
 using System.Web.Mvc;
+using Insert.Services.Interfaces;
+using Newtonsoft.Json;
 
 namespace Insert.Controllers
 {
     public class HomeController : Controller
     {
-        public ActionResult Index()
+        public IMidRateService _midRateService;
+
+        public HomeController(IMidRateService midRateService)
         {
-            return View();
+            _midRateService = midRateService;
         }
 
-        public ActionResult About()
+        public ActionResult TableA()
         {
-            ViewBag.Message = "Your application description page.";
+            var midRates = _midRateService.GetMidRates(Models.TableType.A);
+            return View("MidRateTable", midRates);
+        }
 
-            return View();
+        public ActionResult TableB()
+        {
+            var midRates = _midRateService.GetMidRates(Models.TableType.B);
+            return View("MidRateTable", midRates);
         }
 
         public ActionResult Contact()

@@ -1,0 +1,60 @@
+﻿@model Insert.Models.MidRateTableModel
+
+@{
+    ViewBag.Title = "Table A";
+}
+
+<h2>Table A</h2>
+
+<div>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.TableName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.TableName)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.No)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.No)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.EffectiveDate)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.EffectiveDate)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Rates)
+        </dt>
+
+        <dd>
+            <table class="table">
+                <tr><th>Currency</th> <th>Code</th><th>Value</th></tr>
+                @foreach (var rate in Model.Rates)
+                {
+                    <tr>
+                        <td>
+                            @rate.Name
+                        </td>
+                        <td>
+                            @rate.Code
+                        </td>
+                        <td>
+                            @rate.Value
+                        </td>
+                    </tr>
+                }
+            </table>
+        </dd>
+    </dl>
+</div>
