@@ -29,7 +29,7 @@ namespace Insert.Repositories.Implementations
             if(existingRateTable == null)
             {
                 _dbSet.Add(entity);
-                _dbContext.SaveChanges();
+                await _dbContext.SaveChangesAsync();
             }
         }
     }

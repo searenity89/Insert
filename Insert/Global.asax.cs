@@ -19,8 +19,6 @@ namespace Insert
             FilterConfig.RegisterGlobalFilters(GlobalFilters.Filters);
             RouteConfig.RegisterRoutes(RouteTable.Routes);
             BundleConfig.RegisterBundles(BundleTable.Bundles);
-
-            //Database.SetInitializer(new MigrateDatabaseToLatestVersion<InsertContext, Configuration>());
         }
     }
 }
